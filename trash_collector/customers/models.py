@@ -17,5 +17,4 @@ class Customer(models.Model):
     is_new_customer = True
 
     # suspension = True
-    # weekly_pickup_confirmed = True
 

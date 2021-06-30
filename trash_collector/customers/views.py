@@ -1,6 +1,6 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Customer
 
 
@@ -15,36 +15,34 @@ def index(request):
     # It will be necessary while creating a customer/employee to assign the logged-in user as the user foreign key
     # This will allow you to later query the database using the logged-in user,
     # thereby finding the customer/employee profile that matches with the logged-in user.
-    all_customers = Customer.objects.all()
-    context = {
-        'user': user,
-        'all_customers': all_customers
-    }
-    print(user)
-    return render(request, 'customers/index.html', context)
+    if Customer.objects.filter(pk=user.id).exists() == False:
+        return redirect('create/')
+    else: #home portal
+        specific_customer = Customer.objects.get(pk=user.id)
+        context = {
+            'user': user,
+            'specific_customer': specific_customer
+        }
+        print(user)
+        return render(request, 'customers/index.html', context)
 
 
 def create(request):
     if request.method == 'POST':
         name = request.POST.get('name')
-        user = request.POST.get('alter_ego')
-        start_break = request.POST.get('primary_ability')
-        end_break = request.POST.get('secondary_ability')
-        balance = request.POST.get('catchphrase')
+        weekly_pickup_day = request.POST.get('weekly_pickup_day')
+        address = request.POST.get('address')
         zip_code = request.POST.get('zip_code')
-        address = request.POST.get('balance')
-        is_new_customer = request.POST.get('is_new_customer')
+        one_time_pickup = request.POST.get('one_time_pickup')
         new_customer = Customer(
+            user_id=request.user.id,
             name=name,
-            user=user,
-            start_suspension=start_break,
-            end_suspension=end_break,
-            balance=balance,
-            zip_code=zip_code,
+            weekly_pickup_day=weekly_pickup_day,
+            onetime_pickup=one_time_pickup,
             address=address,
-            is_new_customer=is_new_customer
+            zip_code=zip_code,
         )
         new_customer.save()
-        return HttpResponseRedirect(reverse('customers:index'))
+        return render(request, 'customers/index.html')
     else:
         return render(request, 'customers/create.html')
