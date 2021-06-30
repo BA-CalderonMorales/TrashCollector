@@ -11,9 +11,10 @@ class Customer(models.Model):
     onetime_pickup = models.CharField(max_length=10, null=True)
     start_suspension = models.CharField(max_length=10, null=True)
     end_suspension = models.CharField(max_length=10, null=True)
-    balance = models.IntegerField(max_length=10, default=0)
-    zip_code = models.CharField(max_length=5, null=True)
+    balance = models.IntegerField(default=0)
+    zip_code = models.IntegerField(default=00000, null=True)
     address = models.CharField(max_length=50, null=True)
+    is_new_customer = True
 
     # suspension = True
     # weekly_pickup_confirmed = True
