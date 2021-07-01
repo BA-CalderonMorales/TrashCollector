@@ -20,7 +20,6 @@ def index(request):
         return redirect('create/')
     else:
         # Go into the home portal with user information found in Customer database.
-
         specific_customer = Customer.objects.get(user_id=user.id)
         context = {
             'user': user,
@@ -51,19 +50,35 @@ def create(request):
         return render(request, 'customers/create.html')
 
 
-def edit(request):
+def edit(request, option):
+    specific_option = option
     user = request.user
     specific_customer = Customer.objects.get(user_id=user.id)
     context = {
-        'specific_customer': specific_customer
+        'specific_customer': specific_customer,
+        'specific_option': specific_option
     }
     if request.method == 'POST':
-        specific_customer.name = request.POST.get('name')
-        specific_customer.weekly_pickup_day = request.POST.get('weekly_pickup_day')
-        specific_customer.address = request.POST.get('address')
-        specific_customer.zip_code = request.POST.get('zip_code')
-        specific_customer.one_time_pickup = request.POST.get('one_time_pickup')
-        specific_customer.save()
+        if specific_option == 1:
+            # Weekly pickup
+            specific_customer.weekly_pickup_day = request.POST.get('weekly_pickup_day')
+            specific_customer.save()
+        elif specific_option == 2:
+            # Suspend account
+            specific_customer.start_suspension = request.POST.get('start_suspension')
+            specific_customer.end_suspension = request.POST.get('end_suspension')
+            specific_customer.save()
+        elif specific_option == 3:
+            # Onetime pickup
+            specific_customer.onetime_pickup = request.POST.get('onetime_pickup')
+            specific_customer.save()
+        elif specific_option == 4:
+            # Edit Account Info
+            specific_customer.name = request.POST.get('name')
+            specific_customer.address = request.POST.get('address')
+            specific_customer.zip_code = request.POST.get('zip_code')
+            specific_customer.save()
+
         return HttpResponseRedirect(reverse('customers:index'))
     else:
         return render(request, 'customers/edit.html', context)

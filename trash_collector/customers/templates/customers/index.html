@@ -18,7 +18,6 @@
     <p>Balance: {{ specific_customer.balance }}</p>
     <p>Start Break: {{ specific_customer.start_suspension }}</p>
     <p>End Break: {{ specific_customer.end_suspension }}</p>
-    <p> Would you like to edit your information? <a href="{% url 'customers:edit' %}">EDIT</a></p>
   {% else %}
     <p>You are at the customer index, but you are not logged in.</p>
     <a href="{% url 'login' %}">Log In</a>

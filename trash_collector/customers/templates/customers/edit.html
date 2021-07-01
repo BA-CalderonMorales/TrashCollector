@@ -6,13 +6,40 @@
 {% block header %} Update Account{% endblock %}
 
 {% block content %}
-  <form action="{% url 'customers:edit' %}" method="POST">
+  {% if specific_option == 1 %}
+    <!-- Change Weekly Pickup -->
+    <form action="{% url 'customers:edit' 1 %}" method="POST">
     {% csrf_token %}
-    Name:<input type="text" name="name" id="name" value="{{specific_customer.name}}"><br>
-    Weekly Pickup Day:<input type="text" name="weekly_pickup_day" id="weekly_pickup_day" value="{{specific_customer.weekly_pickup_day}}"><br>
-    One Time Pickup Date:<input type="text" name="one_time_pickup" id="one_time_pickup" value="{{specific_customer.one_time_pickup}}"><br>
-    Address:<input type="text" name="address" id="address" value="{{specific_customer.address}}"><br>
-    Zip Code:<input type="text" name="zip_code" id="zip_code" value='{{ specific_customer.zip_code }}'><br>
-    <input type="submit" value="Update Account">
-  </form>
+      Weekly Pickup Day:<input type="text" name="weekly_pickup_day" id="weekly_pickup_day" value="{{specific_customer.weekly_pickup_day}}"><br>
+      <input type="submit" value="Update Account">
+    </form>
+
+  {% elif specific_option == 2 %}
+    <!-- Suspend Account -->
+    <form action="{% url 'customers:edit' 2 %}" method="POST">
+    {% csrf_token %}
+      Start Break:<input type="date" name="start_suspension" id="start_suspension" value='{{ specific_customer.start_suspension }}'><br>
+      End Break:<input type="date" name="end_suspension" id="end_suspension" value='{{ specific_customer.end_suspension }}'><br>
+      <input type="submit" value="Update Account">
+    </form>
+
+  {% elif specific_option == 3 %}
+    <!-- One-time pickup -->
+    <form action="{% url 'customers:edit' 3 %}" method="POST">
+    {% csrf_token %}
+      One Time Pickup Date:<input type="date" name="onetime_pickup" id="onetime_pickup" value="{{specific_customer.onetime_pickup}}"><br>
+      <input type="submit" value="Update Account">
+    </form>
+
+  {% elif specific_option == 4 %}
+    <!-- Edit Account Info -->
+    <form action="{% url 'customers:edit' 4 %}" method="POST">
+    {% csrf_token %}
+      Name:<input type="text" name="name" id="name" value="{{specific_customer.name}}"><br>
+      Address:<input type="text" name="address" id="address" value="{{specific_customer.address}}"><br>
+      Zip Code:<input type="text" name="zip_code" id="zip_code" value='{{ specific_customer.zip_code }}'><br>
+      <input type="submit" value="Update Account">
+    </form>
+
+  {% endif %}
 {% endblock %}

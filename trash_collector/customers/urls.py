@@ -8,5 +8,5 @@ app_name = "customers"
 urlpatterns = [
     path('', views.index, name="index"),
     path('create/', views.create, name="create"),
-    path('edit/', views.edit, name="edit")
+    path('edit/<int:option>/', views.edit, name="edit")
 ]

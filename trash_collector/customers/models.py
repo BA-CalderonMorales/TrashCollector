@@ -14,7 +14,6 @@ class Customer(models.Model):
     balance = models.IntegerField(default=0)
     zip_code = models.IntegerField(default=00000, null=True)
     address = models.CharField(max_length=50, null=True)
-    is_new_customer = True
-
+    # is_new_customer = True
     # suspension = True
 
