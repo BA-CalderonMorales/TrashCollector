@@ -1,12 +1,15 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.apps import apps
-
+import time
+from datetime import date
+today = date.today()
+today = today.strftime("%Y-%m-%d")
+print(today)
 # Create your views here.
 
 # TODO: Create a function for each path created in employees/urls.py. Each will need a template as well.
 from django.urls import reverse
-
 from .models import Employees
 
 
@@ -19,11 +22,13 @@ def index(request):
         return redirect('create/')
     else:
         # Go into the home portal with user information found in Employee database.
-        specific_employee = Employees.objects.get(user_id=user.id)
         all_customers = Customer.objects.all()
+        specific_employee = Employees.objects.get(user_id=user.id)
+        same_zip_and_not_suspended = all_customers.filter(zip_code=specific_employee.zip_code)
+        #one_time_pickup = same_zip_customers.filter(onetime_pickup=)
         context = {
             'user': user,
-            'all_customers': all_customers,
+            'todays_customers': todays_customers,
             'specific_employee': specific_employee
         }
         print(user)

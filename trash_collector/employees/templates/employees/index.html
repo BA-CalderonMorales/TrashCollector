@@ -1,3 +1,4 @@
+
 {% extends 'base.html' %}
 
 {% block title %}{% block header %} Employee Home {% endblock %}{% endblock %}
@@ -5,6 +6,15 @@
 {% block content %}
   {% if user.is_authenticated %}
     Hello Employee {{ user.username }}!
+
+      <table>
+        <tr><th>Customers</th></tr>
+        {% for customer in todays_customers %}
+        <tr><td>{{customer.name}}</td></tr>
+        {% endfor %}
+      </table>
+
+
   {% else %}
     <p>You are at the employee index, but you are not logged in.</p>
     <a href="{% url 'login' %}">Log In</a>
