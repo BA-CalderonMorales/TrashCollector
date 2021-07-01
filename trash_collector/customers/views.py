@@ -15,10 +15,13 @@ def index(request):
     # It will be necessary while creating a customer/employee to assign the logged-in user as the user foreign key
     # This will allow you to later query the database using the logged-in user,
     # thereby finding the customer/employee profile that matches with the logged-in user.
-    if Customer.objects.filter(pk=user.id).exists() == False:
+    if not Customer.objects.filter(user_id=user.id).exists():
+        #  If user isn't in current Customer database, then create a customer with user information.
         return redirect('create/')
-    else: #home portal
-        specific_customer = Customer.objects.get(pk=user.id)
+    else:
+        # Go into the home portal with user information found in Customer database.
+
+        specific_customer = Customer.objects.get(user_id=user.id)
         context = {
             'user': user,
             'specific_customer': specific_customer
@@ -43,6 +46,6 @@ def create(request):
             zip_code=zip_code,
         )
         new_customer.save()
-        return render(request, 'customers/index.html')
+        return HttpResponseRedirect(reverse('customers:index'))
     else:
         return render(request, 'customers/create.html')

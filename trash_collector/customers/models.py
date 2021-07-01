@@ -6,7 +6,7 @@ from django.db import models
 
 class Customer(models.Model):
     name = models.CharField(max_length=50)
-    user = models.ForeignKey('accounts.User', blank=True, null=True, on_delete=models.CASCADE)
+    user = models.ForeignKey('accounts.User', blank=True, null=True, on_delete=models.PROTECT)
     weekly_pickup_day = models.CharField(max_length=10, null=True)
     onetime_pickup = models.CharField(max_length=10, null=True)
     start_suspension = models.CharField(max_length=10, null=True)
