@@ -49,3 +49,21 @@ def create(request):
         return HttpResponseRedirect(reverse('customers:index'))
     else:
         return render(request, 'customers/create.html')
+
+
+def edit(request):
+    user = request.user
+    specific_customer = Customer.objects.get(user_id=user.id)
+    context = {
+        'specific_customer': specific_customer
+    }
+    if request.method == 'POST':
+        specific_customer.name = request.POST.get('name')
+        specific_customer.weekly_pickup_day = request.POST.get('weekly_pickup_day')
+        specific_customer.address = request.POST.get('address')
+        specific_customer.zip_code = request.POST.get('zip_code')
+        specific_customer.one_time_pickup = request.POST.get('one_time_pickup')
+        specific_customer.save()
+        return HttpResponseRedirect(reverse('customers:index'))
+    else:
+        return render(request, 'customers/edit.html', context)
