@@ -7,9 +7,18 @@
   {% if user.is_authenticated %}
     Hello Employee {{ user.username }}!
       <table>
-        <tr><th>Today's Customers</th></tr>
+        <tr>
+          <th>Today's Customers</th>
+          <th><!-- Confirm Pickup --></th>
+        </tr>
         {% for customer in todays_customers %}
-        <tr><td>{{customer.name}}</td></tr>
+        <tr>
+          <td>{{customer.name}}</td>
+          <td>
+            <a href="{% url 'employees:confirmed_pickup' customer.user_id %}">
+                <button>Confirm Pickup</button>
+            </a>
+        </tr>
         {% endfor %}
       </table>
 <br><br>

@@ -49,7 +49,7 @@ def index(request):
             'todays_customers': todays_customers,
             'specific_employee': specific_employee
         }
-        #print(user)
+        # print(user)
         return render(request, 'employees/index.html', context)
 
 
@@ -78,9 +78,9 @@ def check_suspension(the_customer):
     else:
         if end > today:
             the_customer.has_suspension = True
-        elif start > now:
+        elif start > today:
             the_customer.has_suspension = False
-        elif end == now:
+        elif end == today:
             the_customer.has_suspension = False
         else:
             the_customer.has_suspension = False
@@ -96,16 +96,10 @@ def find_customers_by_day(request):
         specific_employee = Employees.objects.get(user_id=user.id)
         zip_code_customers = Customer.objects.filter(zip_code=specific_employee.zip_code)
         daily_customers = []
-        if option == 'Monday':
-            daily_customers = zip_code_customers.filter(weekly_pickup_day='Monday')
-        elif option == 'Tuesday':
-            daily_customers = zip_code_customers.filter(weekly_pickup_day='Tuesday')
-        elif option == 'Wednesday':
-            daily_customers = zip_code_customers.filter(weekly_pickup_day='Wednesday')
-        elif option == 'Thursday':
-            daily_customers = zip_code_customers.filter(weekly_pickup_day='Thursday')
-        elif option == 'Friday':
-            daily_customers = zip_code_customers.filter(weekly_pickup_day='Friday')
+        weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']
+        for day in weekdays:
+            if option == day:
+                daily_customers = zip_code_customers.filter(weekly_pickup_day=day)
         context = {
             'daily_customers': daily_customers
         }
@@ -113,3 +107,23 @@ def find_customers_by_day(request):
 
     else:
         return render(request, 'employees/daily.html')
+
+
+def confirmed_pickups(request, customer_id, zip_code):
+    # filter the customers for id
+
+
+    return HttpResponseRedirect(reverse('employees:index'))
+
+
+"""
+if option == 'Monday':
+    daily_customers = zip_code_customers.filter(weekly_pickup_day='Monday')
+elif option == 'Tuesday':
+    daily_customers = zip_code_customers.filter(weekly_pickup_day='Tuesday')
+elif option == 'Wednesday':
+    daily_customers = zip_code_customers.filter(weekly_pickup_day='Wednesday')
+elif option == 'Thursday':
+    daily_customers = zip_code_customers.filter(weekly_pickup_day='Thursday')
+elif option == 'Friday':
+    daily_customers = zip_code_customers.filter(weekly_pickup_day='Friday')"""
