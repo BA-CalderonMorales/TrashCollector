@@ -2,7 +2,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.shortcuts import render, redirect
 from .models import Customer
-from datetime import datetime, date
+from datetime import date
 
 today = date.today()
 today = today.strftime("%Y-%m-%d")
@@ -71,7 +71,19 @@ def edit(request, option):
             # Suspend account
             specific_customer.start_suspension = request.POST.get('start_suspension')
             specific_customer.end_suspension = request.POST.get('end_suspension')
-            specific_customer = check_suspension(specific_customer)
+            specific_customer.save()
+            start = specific_customer.start_suspension
+            end = specific_customer.end_suspension
+            now = today
+            if end > now:
+                specific_customer.has_suspension = True
+            elif start > now:
+                specific_customer.has_suspension = False
+            elif end == now:
+                specific_customer.has_suspension = False
+            else:
+                specific_customer.has_suspension = False
+
             specific_customer.save()
         elif specific_option == 3:
             # Onetime pickup
@@ -89,19 +101,5 @@ def edit(request, option):
         return render(request, 'customers/edit.html', context)
 
 
-def check_suspension(the_customer):
-    start_date = the_customer.start_suspension
-    end_date = the_customer.end_suspension
-    start = start_date
-    end = end_date
-    now = today
-    if end > now:
-        the_customer.has_suspension = True
-    elif start > now:
-        the_customer.has_suspension = False
-    elif end == now:
-        the_customer.has_suspension = False
-    else:
-        the_customer.has_suspension = False
-    the_customer.save()
-    return the_customer
+
+

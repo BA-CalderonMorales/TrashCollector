@@ -5,7 +5,7 @@ from datetime import date
 
 today = date.today()
 the_current_day_of_week = today.strftime("%A")  # Monday, Tuesday, Wednesday, Thursday, Friday
-today = today.strftime("%Y-%m-%d")  # 2021-07-01
+today = today.strftime("%Y-%m-%d")
 
 print(today)
 # Create your views here.
@@ -34,6 +34,7 @@ def index(request):
                 zip_code_customers.append(customer)
 
         for customer in zip_code_customers:
+            check_suspension(customer)
             if customer.has_suspension:
                 zip_code_customers.pop()
 
@@ -65,3 +66,22 @@ def create(request):
         return HttpResponseRedirect(reverse('employees:index'))
     else:
         return render(request, 'employees/create.html')
+
+
+def check_suspension(the_customer):
+    start_date = the_customer.start_suspension
+    end_date = the_customer.end_suspension
+    start = start_date
+    end = end_date
+    if end is None:
+        pass
+    else:
+        if end > today:
+            the_customer.has_suspension = True
+        elif start > now:
+            the_customer.has_suspension = False
+        elif end == now:
+            the_customer.has_suspension = False
+        else:
+            the_customer.has_suspension = False
+        the_customer.save()
