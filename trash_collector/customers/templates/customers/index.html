@@ -18,6 +18,12 @@
     <p>Balance: {{ specific_customer.balance }}</p>
     <p>Start Break: {{ specific_customer.start_suspension }}</p>
     <p>End Break: {{ specific_customer.end_suspension }}</p>
+    {% if specific_customer.has_suspension == True %}
+      <p>You are currently in a suspended status!</p>
+    {% else %}
+      <p>You are not in a suspended status.</p>
+    {% endif %}
+    <p></p>
   {% else %}
     <p>You are at the customer index, but you are not logged in.</p>
     <a href="{% url 'login' %}">Log In</a>

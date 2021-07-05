@@ -1,10 +1,12 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.apps import apps
-import time
 from datetime import date
+
 today = date.today()
-today = today.strftime("%Y-%m-%d")
+the_current_day_of_week = today.strftime("%A")  # Monday, Tuesday, Wednesday, Thursday, Friday
+today = today.strftime("%Y-%m-%d")  # 2021-07-01
+
 print(today)
 # Create your views here.
 
@@ -24,8 +26,23 @@ def index(request):
         # Go into the home portal with user information found in Employee database.
         all_customers = Customer.objects.all()
         specific_employee = Employees.objects.get(user_id=user.id)
-        same_zip_and_not_suspended = all_customers.filter(zip_code=specific_employee.zip_code)
-        #one_time_pickup = same_zip_customers.filter(onetime_pickup=)
+        todays_customers = []
+        zip_code_customers = []
+
+        for customer in all_customers:
+            if customer.zip_code == specific_employee.zip_code:
+                zip_code_customers.append(customer)
+
+        for customer in zip_code_customers:
+            if customer.has_suspension:
+                zip_code_customers.pop()
+
+        for customer in zip_code_customers:
+            if customer.weekly_pickup_day == the_current_day_of_week \
+                    or customer.onetime_pickup == today:
+                todays_customers.append(customer)
+
+        # one_time_pickup = same_zip_customers.filter(onetime_pickup=)
         context = {
             'user': user,
             'todays_customers': todays_customers,
