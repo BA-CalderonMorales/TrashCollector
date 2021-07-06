@@ -4,34 +4,52 @@
 {% block title %}{% block header %} Employee Home {% endblock %}{% endblock %}
 
 {% block content %}
-  {% if user.is_authenticated %}
-    Hello Employee {{ user.username }}!
-      <table>
-        <tr>
-          <th>Today's Customers</th>
-          <th><!-- Confirm Pickup --></th>
-        </tr>
-        {% for customer in todays_customers %}
-        <tr>
-          <td>{{customer.name}}</td>
-          {% if customer.last_confirmed_pickup != today %}
-          <td>
-                <button type="button" disabled>Confirm Pickup</button>
-          </td>
-          {% else %}
-          <td>
-            <a href="{% url 'employees:confirmed_pickup' customer.id %}">
-                <button>Confirm Pickup</button>
-            </a>
-          </td>
-            {% endif %}
-        </tr>
-        {% endfor %}
-      </table>
 
+  {% if user.is_authenticated %}
+  <div class="container">
+    <div class="row">
+      <div class="col-4 "></div>
+      <div class="col-4 ">
+        <h1 class="">Hello Employee, {{ user.username }}!</h1>
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="" scope="col" >Today's Customers</th>
+            <th class="" scope="col">Address</th>
+            <th scope="col"><!-- Confirm Pickup --></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for customer in todays_customers %}
+          <tr>
+            <td>{{customer.name}}</td>
+            <td>{{customer.address}}</td>
+            {% if customer.last_confirmed_pickup != today %}
+              <td>
+                    <button type="button" disabled>Confirm Pickup</button>
+             </td>
+            {% else %}
+              <td>
+                <a href="{% url 'employees:confirmed_pickup' customer.id %}">
+                  <button>Confirm Pickup</button>
+                </a>
+              </td>
+            {% endif %}
+          </tr>
+          {% endfor %}
+        </tbody>
+
+      </table>
+      </div>
+      <div class="col-4 "></div>
+      </div>
+  </div>
   {% else %}
+    <div class="container">
     <p>You are at the employee index, but you are not logged in.</p>
     <a href="{% url 'login' %}">Log In</a>
     <a href="{% url 'accounts:register' %}">Sign Up</a>
-  {% endif %}
+    </div>
+    {% endif %}
+
 {% endblock %}
