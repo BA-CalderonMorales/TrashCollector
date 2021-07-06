@@ -118,7 +118,6 @@ def confirmed_pickups(request, customer_id):
     specific_customer.last_confirmed_pickup = today
     specific_customer.save()
 
-    # OR return render(request, 'employees:index', context
     return HttpResponseRedirect(reverse('employees:index'))
 
 

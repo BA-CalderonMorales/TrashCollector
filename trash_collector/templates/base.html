@@ -16,7 +16,7 @@
           suspending my account, and an account info page.-->
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">Navbar</a>
+          <a class="navbar-brand" href="#">Municipal Trash Collection</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02"
                   aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -24,7 +24,7 @@
           <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
+                <a class="nav-link active" aria-current="page" href="{% url 'customers:index' %}">Home</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'customers:edit' 1 %}">Change Weekly Pickup Day</a>
@@ -38,16 +38,41 @@
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'customers:edit' 4 %}">Edit Account Info</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+              </li>
             </ul>
           </div>
         </div>
       </nav>
       <!-- Navbar Customer end -->
       {% elif group.name == "Employees" %}
-      <p>Employee Navbar</p>
+      <!-- Navbar Employee start -->
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Municipal Trash Collection</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02"
+                  aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{% url 'employees:index' %}">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'employees:daily' %}">Weekly View</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <!-- Navbar Customer end -->
       {% endif %}
     {% endfor %}
-    <p><a href="{% url 'logout' %}">Log Out</a></p>
   {% endif %}
     <main>
       <h1>{% block header %} {% endblock %}</h1>
