@@ -10,5 +10,5 @@ urlpatterns = [
     path('create/', views.create, name='create'),
     path('daily/', views.find_customers_by_day, name='daily'),
     path('daily/<str:option>/', views.find_customers_by_day, name='daily'),
-    path('confirmed_pickup/{{object}}/<int:customer_id>/', views.confirmed_pickups, name='confirmed_pickup')
+    path(r'confirmed_pickup/^objects/(?P<oid>[0-9]+)/$', views.confirmed_pickups, name='confirmed_pickup')
 ]

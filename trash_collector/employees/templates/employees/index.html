@@ -15,7 +15,7 @@
         <tr>
           <td>{{customer.name}}</td>
           <td>
-            <a href="{% url 'employees:confirmed_pickup' customer.user_id %}">
+            <a href="{% url 'employees:confirmed_pickup' todays_customers %}">
                 <button>Confirm Pickup</button>
             </a>
         </tr>

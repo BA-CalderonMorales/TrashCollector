@@ -109,10 +109,17 @@ def find_customers_by_day(request):
         return render(request, 'employees/daily.html')
 
 
-def confirmed_pickups(request, customer_id, zip_code):
+def confirmed_pickups(request, object):
     # filter the customers for id
+    # find the customer on the table, and pop them from the current list.
+    """
+    context = {
+        updated_customer_list = ...
+    }
 
+    """
 
+    # OR return render(request, 'employees:index', context
     return HttpResponseRedirect(reverse('employees:index'))
 
 
