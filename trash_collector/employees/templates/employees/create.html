@@ -3,13 +3,19 @@
 
 {% block title %} Employee Account {% endblock %}
 
-{% block header %} Create Account{% endblock %}
+{% block header %}<h1 class="display-1 text-center">Create Account</h1>{% endblock %}
 
 {% block content %}
-  <form action="{% url 'employees:create' %}" method="POST">
-    {% csrf_token %}
-    Name:<input type="text" name="name" id="name"><br>
-    Zip Code:<input type="text" name="zip_code" id="zip_code"><br>
-    <input type="submit" value="Create Account">
-</form>
+<div class="row">
+  <div class="col-3"></div>
+  <div class="col-6 mb-3">
+    <form class="form-control" action="{% url 'employees:create' %}" method="POST">
+      {% csrf_token %}
+      Name:<input class="form-control" type="text" name="name" id="name"><br>
+      Zip Code:<input class="form-control" type="text" name="zip_code" id="zip_code"><br>
+      <input class="form-control" type="submit" value="Create Account">
+    </form>
+  </div>
+  <div class="col-3"></div>
+</div>
 {% endblock %}

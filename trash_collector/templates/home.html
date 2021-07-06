@@ -2,17 +2,23 @@
 
 {% block title %} Home Portal {% endblock %}
 
-{% block header %} Home Portal {% endblock %}
+{% block header %}<h1 class="display-1 text-center">Home Portal</h1> {% endblock %}
 
 {% block content %}
-{% if user.is_authenticated %}
-  Hello {{ user.username }}. You don't have a group assigned. Please contact administrator or attempt to register again.
-  <p><a href="{% url 'logout' %}">Log Out</a></p>
-{% else %}
-  <p>You are not logged in. Please log in or create an account.</p>
-  <a href="{% url 'login' %}">Log In</a>
-  <a href="{% url 'accounts:register' %}">Sign Up</a>
-{% endif %}
+<div class="row">
+  <div class="col-3"></div>
+  <div class="col-6 mb-3">
+    {% if user.is_authenticated %}
+      Hello {{ user.username }}. You don't have a group assigned. Please contact administrator or attempt to register again.
+      <p><a href="{% url 'logout' %}"><button>Log Out</button></a></p>
+    {% else %}
+      <p class="text-center">You are not logged in. Please log in or create an account.</p>
+      <a href="{% url 'login' %}"><button class="form-control">Log In</button></a>
+      <a href="{% url 'accounts:register' %}"><button class="form-control">Sign Up</button></a>
+    {% endif %}
+    </div>
+  <div class="col-3"></div>
+</div>
 {% endblock %}
 
 {# This is the home page that allows a logged out user to register or log in #}
