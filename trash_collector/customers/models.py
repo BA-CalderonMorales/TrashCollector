@@ -16,5 +16,6 @@ class Customer(models.Model):
     zip_code = models.IntegerField(default=00000, null=True)
     address = models.CharField(max_length=50, blank=True, null=True)
     has_suspension = models.BooleanField(default=False)
-    # is_new_customer = True
+    last_confirmed_pickup = models.CharField(max_length=10, blank=True, null=True)
+
 

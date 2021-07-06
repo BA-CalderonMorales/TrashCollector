@@ -26,9 +26,8 @@ def index(request):
         # Go into the home portal with user information found in Employee database.
         all_customers = Customer.objects.all()
         specific_employee = Employees.objects.get(user_id=user.id)
-        todays_customers = []
         zip_code_customers = []
-
+        todays_customers = []
         for customer in all_customers:
             if customer.zip_code == specific_employee.zip_code:
                 zip_code_customers.append(customer)
@@ -44,6 +43,7 @@ def index(request):
                 todays_customers.append(customer)
 
         # one_time_pickup = same_zip_customers.filter(onetime_pickup=)
+        specific_employee.save()
         context = {
             'user': user,
             'todays_customers': todays_customers,
@@ -109,9 +109,14 @@ def find_customers_by_day(request):
         return render(request, 'employees/daily.html')
 
 
-def confirmed_pickups(request, customer_id, zip_code):
-    # filter the customers for id
+def confirmed_pickups(request, customer_id):
+    Customer = apps.get_model('customers.Customer')
 
+    all_customers = Customer.objects.all()
+    specific_customer = all_customers.get(id=customer_id)
+    specific_customer.balance += 10
+    specific_customer.last_confirmed_pickup = today
+    specific_customer.save()
 
     return HttpResponseRedirect(reverse('employees:index'))
 

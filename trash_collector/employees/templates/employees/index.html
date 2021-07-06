@@ -14,10 +14,17 @@
         {% for customer in todays_customers %}
         <tr>
           <td>{{customer.name}}</td>
+          {% if customer.last_confirmed_pickup != today %}
           <td>
-            <a href="{% url 'employees:confirmed_pickup' customer.user_id %}">
-                <button>Confirm Pickup</button>
-            </a>
+                <button type="button" disabled>Confirm Pickup</button>
+          </td>
+          {% else %}
+          <td>
+            <a href="{% url 'employees:confirmed_pickup' customer.id %}">
+            <button>Confirm Pickup</button>
+              </a>
+          </td>
+            {% endif %}
         </tr>
         {% endfor %}
       </table>
