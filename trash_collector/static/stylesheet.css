@@ -48,7 +48,7 @@ input[type=checkbox]{
     -webkit-transform: scale(3); /* Safari and Chrome */
     -o-transform: scale(3); /* Opera */
     transform: scale(3);
-    margin: -2rem 2rem 2rem 38rem;
+    margin: -2rem 0rem 0rem 18rem;
 }
 
 input[type=checkbox]:checked{
@@ -92,25 +92,6 @@ label {
     outline-offset: -8px;
 }
 
-.form-control-registration {
-    display: block;
-    width: 100%;
-    padding: 1rem;
-    font-size: 2rem;
-    font-weight: 400;
-    line-height: 1.5;
-    color: #ccc;
-    background-color: #2a2b2a;
-    background-clip: padding-box;
-    border: 0px solid #ced4da;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    border-radius: .25rem;
-    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-    outline-offset: -8px;
-}
-
 .confirm-pickup-btn {
     display: block;
     width: 100%;
@@ -132,7 +113,8 @@ label {
 
 .helptext {
     font-family: 'Ubuntu', sans-serif;
-    font-size: 2rem;
+    font-size: 1rem;
+    line-height: 1.2rem;
 }
 
 #custom-table {
