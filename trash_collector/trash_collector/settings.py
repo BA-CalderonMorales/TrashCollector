@@ -114,6 +114,7 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 
+
 # Defines our custom user model as the auth user for the app
 AUTH_USER_MODEL = 'accounts.User'
 

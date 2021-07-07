@@ -1,25 +1,51 @@
 {% extends 'base.html' %}
 
 {% block title %} Weekly View{% endblock %}
-{% block header %} <h1 class="display-1 text-center">Weekly View</h1> {% endblock %}
-{% block content %}
+{% block header %}
+<h1 class="display-1 text-center" id="title">Weekly View</h1>
+{% endblock %}
 
-<p>Want to see which customers have a pickups scheduled on a specific day of the week? Please choose a day below:</p>
-      <p><form name='dayform' id="dayform" method="POST" action="{% url 'employees:daily' %}">
-    {% csrf_token %}
-      Day of Week: <select name="dayofweek" id="dayofweek">
-  <option value="Monday" selected="Monday">Monday</option>
-  <option value="Tuesday" selected="Tuesday">Tuesday</option>
-  <option value="Wednesday" selected="Wednesday">Wednesday</option>
-  <option value="Thursday" selected="Thursday">Thursday</option>
-  <option value="Friday" selected="Friday">Friday</option>
-  </select>
-  <input type="submit" value="Submit">
-</form></p>
-<table>
-        <tr><th>Daily Customers</th></tr>
-        {% for customer in daily_customers %}
-        <tr><td>{{customer.name}}</td></tr>
-        {% endfor %}
-      </table>
+{% block content %}
+    <div class="row row-cols-auto d-flex justify-content-center">
+        <dvi class="col">
+            <p class="display-6 text-center" id="subtitle">Choose from a day below to see which customers have pickups scheduled</p>
+        </dvi>
+        <dvi class="col">
+            <div class="mb-3">
+                <form name='dayform' id="dayform" method="POST" action="{% url 'employees:daily' %}">
+                    {% csrf_token %}
+                    Day of Week:
+                    <select name="dayofweek" id="dayofweek">
+                    <option value="Monday" selected="Monday">Monday</option>
+                    <option value="Tuesday" selected="Tuesday">Tuesday</option>
+                    <option value="Wednesday" selected="Wednesday">Wednesday</option>
+                    <option value="Thursday" selected="Thursday">Thursday</option>
+                    <option value="Friday" selected="Friday">Friday</option>
+                    </select>
+                    <input type="submit" value="Submit">
+                </form>
+            </div>
+
+        </dvi>
+        <dvi class="col" id="custom-table">
+            <table class="table table-striped table-hover table-light">
+                <caption style="color:whitesmoke;font-size:.75rem;">List of Customers</caption>
+                <thead>
+                    <tr>
+                        <th>Daily Customers</th>
+                    </tr>
+                </thead>
+                {% for customer in daily_customers %}
+                <tbody>
+                    <tr>
+                        <td>{{customer.name}}</td>
+                    </tr>
+                </tbody>
+                {% endfor %}
+            </table>
+        </dvi>
+    </div>
+
+
+
 {% endblock %}

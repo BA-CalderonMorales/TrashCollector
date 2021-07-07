@@ -2,47 +2,47 @@
 {% extends 'base.html' %}
 
 {% block title %}Employee Home{% endblock %}
-{% block header %} <h1 class="display-1 text-center">Employee Home</h1> {% endblock %}
+{% block header %} <h1 class="display-1 text-center" id="title">Employee Home</h1> {% endblock %}
 
 {% block content %}
 
   {% if user.is_authenticated %}
   <!-- <div class="container"> -->
-    <div class="row">
-      <div class="col-4"></div>
-      <div class="col-4">
-        <h1 class="text-center">Hello Employee, {{ user.username }}!</h1>
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col" >Today's Customers</th>
-            <th scope="col">Address</th>
-            <th scope="col"><!-- Confirm Pickup --></th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for customer in todays_customers %}
-          <tr>
-            <td>{{customer.name}}</td>
-            <td>{{customer.address}}</td>
-            {% if customer.last_confirmed_pickup != today %}
-              <td>
-                    <button type="button" class="form-control" disabled>Confirm Pickup</button>
-             </td>
-            {% else %}
-              <td>
-                <a href="{% url 'employees:confirmed_pickup' customer.id %}">
-                  <button type="button" class="form-control">Confirm Pickup</button>
-                </a>
-              </td>
-            {% endif %}
-          </tr>
-          {% endfor %}
-        </tbody>
-
-      </table>
+    <div class="row row-cols-auto d-flex justify-content-center">
+      <div class="col"></div>
+      <div class="col" id="custom-table">
+        <h1 class="display-3 text-center" id="subtitle">Hello, {{ user.username }}!</h1>
+        <table class="table table-striped table-hover table-light">
+          <caption style="color:whitesmoke;font-size:.75rem;">List of Customers</caption>
+          <thead>
+            <tr>
+              <th scope="col" >Today's Customers</th>
+              <th scope="col">Address</th>
+              <th scope="col"><!-- Confirm Pickup --></th>
+            </tr>
+          </thead>
+          <tbody class="employee-table-body">
+            {% for customer in todays_customers %}
+            <tr>
+              <td>{{customer.name}}</td>
+              <td>{{customer.address}}</td>
+              {% if customer.last_confirmed_pickup != today %}
+                <td>
+                      <button type="button" class="form-control confirm-pickup-btn" disabled>Confirm Pickup</button>
+               </td>
+              {% else %}
+                <td>
+                  <a href="{% url 'employees:confirmed_pickup' customer.id %}">
+                    <button type="button" class="form-control confirm-pickup-btn">Confirm Pickup</button>
+                  </a>
+                </td>
+              {% endif %}
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
       </div>
-      <div class="col-4 "></div>
+      <div class="col"></div>
       </div>
   <!-- </div> -->
   {% else %}

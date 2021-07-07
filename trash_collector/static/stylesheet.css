@@ -1,3 +1,177 @@
-.body {
-    background-color: lightgrey
+html {
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+    background-color: #DCE1E3;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+h1 {
+    font-family: 'Ubuntu', sans-serif;
+    margin-top: 15rem;
+}
+
+p {
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 2.5rem;
+}
+
+a {
+    text-decoration: none;
+}
+
+input[type=text],
+input[type=password]{
+    width: 100%;
+    height: 50px;
+    padding: 5px 10px;
+    background-color: rgb(215, 215, 215);
+    line-height: 20px;
+    font-size: 25px;
+    color: rgb(136, 136, 136);
+    border-radius: 2px 2px 2px 2px;
+    border: 1px solid rgb(114, 114, 114);
+    box-shadow: 0 1px 0 rgba(24, 24, 24, 0.1);
+    box-sizing: border-box;
+}
+
+input[type=checkbox]{
+    display: block;
+    /* Double-sized Checkboxes */
+    -ms-transform: scale(3); /* IE */
+    -moz-transform: scale(3); /* FF */
+    -webkit-transform: scale(3); /* Safari and Chrome */
+    -o-transform: scale(3); /* Opera */
+    transform: scale(3);
+    margin: -2rem 2rem 2rem 38rem;
+}
+
+input[type=checkbox]:checked{
+  padding: 2rem;
+}
+
+thead {
+    font-size: 1rem;
+    color: #2a2b2a;
+}
+
+tbody {
+    font-size: 1rem;
+    color: #2a2b2a;
+}
+
+label {
+    font-size: 2rem;
+}
+
+.home-portal {
+    background-color: #2a2b2a;
+}
+
+.form-control {
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    font-size: 2rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #ccc;
+    background-color: #2a2b2a;
+    background-clip: padding-box;
+    border: 0px solid #ced4da;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    outline-offset: -8px;
+}
+
+.form-control-registration {
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    font-size: 2rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #ccc;
+    background-color: #2a2b2a;
+    background-clip: padding-box;
+    border: 0px solid #ced4da;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    outline-offset: -8px;
+}
+
+.confirm-pickup-btn {
+    display: block;
+    width: 100%;
+    padding: 0.25rem 0.25rem;
+    font-size: .7rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #ccc;
+    background-color: #a22c29;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    outline-offset: -8px;
+}
+
+.helptext {
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 2rem;
+}
+
+#custom-table {
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 2rem;
+    background-color: #004E7C;
+    color: whitesmoke;
+    width: 85%;
+    height: auto;
+    border-radius: .5rem;
+    padding-top: 2rem;
+}
+
+#dayform {
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #ccc;
+    background-color: #5C5F58;
+    background-clip: padding-box;
+    border: 0px solid #ced4da;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: .5rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    outline-offset: -8px;
+}
+
+#title {
+    padding-top: 0rem;
+    margin-top: -8rem;
+    margin-bottom: 6rem;
+}
+
+#subtitle {
+    padding-bottom: 3rem;
+    margin-top: 2rem;
 }

@@ -3,21 +3,23 @@
 
 {% block title %} Customer Account {% endblock %}
 
-{% block header %}<h1 class="display-1 text-center">Create Account</h1> {% endblock %}
+{% block header %}<h1 class="display-1 text-center" id="title">Create Account</h1> {% endblock %}
 
 {% block content %}
-<div class="row">
-  <div class="col-3"></div>
-  <div class="col-6 mb-3">
-    <form class="form-control" action="{% url 'customers:create' %}" method="POST">
-      {% csrf_token %}
-      Name:<input class="form-control" type="text" name="name" id="name"><br>
-      Weekly Pickup Day:<input class="form-control" type="text" name="weekly_pickup_day" id="weekly_pickup_day"><br>
-      One Time Pickup Date:<input class="form-control" type="date" name="one_time_pickup" id="one_time_pickup"><br>
-      Address:<input  class="form-control" type="text" name="address" id="address"><br>
-      Zip Code:<input class="form-control" type="text" name="zip_code" id="zip_code"><br>
-      <input type="submit" class="form-control" value="Create Account">
-    </form>
+<div class="row row-cols-auto d-flex justify-content-center">
+  <div class="col"></div>
+  <div class="col">
+    <div class="mb-3">
+      <form class="form-control" action="{% url 'customers:create' %}" method="POST">
+        {% csrf_token %}
+        Name:<input class="form-control" type="text" name="name" id="name"><br>
+        Weekly Pickup Day:<input class="form-control" type="text" name="weekly_pickup_day" id="weekly_pickup_day"><br>
+        One Time Pickup Date:<input class="form-control" type="date" name="one_time_pickup" id="one_time_pickup"><br>
+        Address:<input  class="form-control" type="text" name="address" id="address"><br>
+        Zip Code:<input class="form-control" type="text" name="zip_code" id="zip_code"><br>
+        <input type="submit" class="form-control" value="Create Account">
+      </form>
+    </div>
   </div>
   <div class="col-3"></div>
 </div>

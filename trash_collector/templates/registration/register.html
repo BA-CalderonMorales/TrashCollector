@@ -2,18 +2,20 @@
 
 {% block title %} Register Account {% endblock %}
 
-{% block header %} <h1 class="display-1 text-center">Register Account</h1>{% endblock %}
+{% block header %} <h1 class="display-1 text-center" id="title">Register Account</h1>{% endblock %}
 
 {% block content %}
-<div class="row">
-  <div class="col-3"></div>
-  <div class="col-6 mb-3">
-    <form class="form-control" method="post">
+<div class="row row-cols-auto justify-content-center">
+  <div class="col"></div>
+  <div class="col">
+    <div class="form-control-registration">
+      <form method="post">
       {% csrf_token %}
       {{ form.as_p }}
       <button class="form-control" type="submit">Sign Up</button>
-    </form>
+      </form>
+    </div>
   </div>
-  <div class="col-3"></div>
+  <div class="col"></div>
 </div>
 {% endblock %}

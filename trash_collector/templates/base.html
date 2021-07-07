@@ -2,12 +2,15 @@
 <html>
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
         rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
         crossorigin="anonymous">
+  <!-- CSS CUSTOM -->
+  {% load static %}
   <link rel="stylesheet" href="{% static 'stylesheet.css' %}">
   <title>{% block title %}{% endblock %}</title>
 </head>
@@ -19,7 +22,7 @@
       <!-- Navbar Customer start -->
       <!-- As a customer, I want a navbar that can direct me to links for changing my pickup day,
           suspending my account, and an account info page.-->
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
           <a class="navbar-brand" href="#">Municipal Trash Collection</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02"
@@ -53,7 +56,7 @@
       <!-- Navbar Customer end -->
       {% elif group.name == "Employees" %}
       <!-- Navbar Employee start -->
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
           <a class="navbar-brand" href="#">Municipal Trash Collection</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02"
@@ -79,7 +82,7 @@
       {% endif %}
     {% endfor %}
   {% endif %}
-  <div class="container">
+  <div class="container d-flex justify-content-center">
     <main>
       <h1>{% block header %} {% endblock %}</h1>
       {% block content %} {% endblock %}
