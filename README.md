@@ -1,5 +1,7 @@
 # TrashCollector
-Django, SQL, HTML/CSS, Python technologies used for creating this CRUD app.
+Django, SQL, HTML/CSS, Python technologies used for creating this CRUD app. If you download the PyCharm code, you'll 
+need to make sure that you have you're own database to go along with this site. It uses MySQL to run and it's
+currently relying on the backend server that I built on my computer to output the data that you see below.
 ## Here are some snippets of the site
 ![image](https://user-images.githubusercontent.com/62074841/132032618-b504c434-78d3-429c-8872-1284f1bfad04.png)
 ![image](https://user-images.githubusercontent.com/62074841/132032665-3302a80d-43a6-4eff-8ab0-0fe2c8954737.png)
